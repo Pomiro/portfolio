@@ -1,88 +1,70 @@
-"use client";
-import React, { useState } from 'react';
+import React from 'react';
+import Section from './Section';
+import { ArrowUpRight } from './Icons';
 
 const jobs = [
   {
-    title: "Engineer",
-    company: "Upstatement",
-    range: "May 2018 - Present",
-    url: "https://www.upstatement.com/",
-    duties: [
-      "Write modern, performant, maintainable code for a diverse array of client and internal projects",
-      "Work with a variety of different languages, platforms, frameworks, and content management systems such as JavaScript, TypeScript, Gatsby, React, Craft, WordPress, Prismic, and Netlify",
-      "Communicate with multi-disciplinary teams of engineers, designers, producers, and clients on a daily basis"
-    ]
+    date: "Январь 2025 — Сейчас",
+    title: "AI Engineer",
+    company: "Неолитика",
+    url: "https://templab.ru/home",
+    description: "Создаю надежную архитектуру и эффективные сервисы на языке Python, фокусируясь на стабильности и поддерживаемости кода. Имею глубокий опыт работы с Flask, Docker и развертыванием решений в Yandex Cloud. Ключевая экспертиза — разработка сервисов речевой аналитики с использованием OpenAI API, которые помогают отделам продаж оптимизировать процессы. Моя сильная сторона — умение слышать бизнес, переводить сложные требования на технический язык и координировать команду разработки для достижения финального результата",
+    tech: ["Python", "OpenAI API", "Flask", "Docker", "Yandex Cloud"]
   },
   {
-    title: "Studio Developer",
-    company: "Scout",
-    range: "Jan 2018 - April 2018",
-    url: "https://web.northeastern.edu/scout/",
-    duties: [
-      "Worked with a team of three designers to build a marketing website and e-commerce platform for blistabloc, an ambitious startup originating in the Northeastern Sherman Center for Engineering Entrepreneurship",
-      "Interfaced with clients on a weekly basis, providing technological expertise"
-    ]
-  },
-  {
-    title: "Apple Genius",
-    company: "Apple",
-    range: "Jul 2017 - Oct 2017",
-    url: "https://www.apple.com/",
-    duties: [
-      "Developed and shipped highly interactive web applications for Apple Music using Ember.js",
-      "Built and shipped the Apple Music Extension within Facebook Messenger leveraging third-party APIs",
-      "Architected and implemented the front-end of Apple Music's embeddable web player widget"
-    ]
+    date: "Январь 2023 — Январь 2025",
+    title: "Аналитик клиентопотока",
+    company: "ПСК Дом девелопмент",
+    url: "https://72dom.com/",
+    description: "Специализируюсь на построении глубокой аналитики клиентопотока и создании комплексной отчетности в Power BI. Реализовал архитектуру сквозной аналитики — от первого касания в рекламном канале до финальной сделки. Обладаю опытом ретроспективного анализа работы отделов продаж за многолетние периоды, включая сегментацию данных по кластерам. Разработал и внедрил логику полуавтоматического распределения лидов, основанную на сопоставлении профиля клиента с эффективностью конкретных групп менеджеров, что позволило оптимизировать конверсию",
+    tech: ["Python", "Power BI"]
   }
 ];
 
 const Experience = () => {
-  const [activeTabId, setActiveTabId] = useState(0);
-
   return (
-    <section id="jobs" className="max-w-[700px] mx-auto py-24 px-6 sm:px-12">
-      <div className="flex items-center mb-10">
-        <h2 className="text-lightest-slate text-2xl sm:text-3xl font-bold font-mono mr-4">
-          <span className="text-green text-xl mr-2">02.</span>
-          Where I’ve Worked
-        </h2>
-        <div className="h-[1px] bg-lightest-navy flex-grow max-w-[300px]"></div>
-      </div>
-
-      <div className="flex flex-col sm:flex-row gap-5">
-        {/* Tab List */}
-        <div className="flex sm:flex-col overflow-x-auto sm:overflow-visible border-b-2 sm:border-b-0 sm:border-l-2 border-lightest-navy min-w-max">
-          {jobs.map((job, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveTabId(i)}
-              className={`px-5 py-3 text-left font-mono text-sm sm:text-xs transition-colors border-b-2 sm:border-b-0 sm:border-l-2 -mb-[2px] sm:-mb-0 sm:-ml-[2px] ${
-                activeTabId === i
-                  ? 'text-green border-green bg-light-navy'
-                  : 'text-slate border-transparent hover:bg-light-navy hover:text-green'
-              }`}
-            >
-              {job.company}
-            </button>
-          ))}
-        </div>
-
-        {/* Tab Content */}
-        <div className="py-2">
-          <h3 className="text-lightest-slate text-xl font-bold">
-            {jobs[activeTabId].title} <span className="text-green">@ <a href={jobs[activeTabId].url} className="hover:underline">{jobs[activeTabId].company}</a></span>
-          </h3>
-          <p className="text-slate font-mono text-xs mb-5 mt-1">{jobs[activeTabId].range}</p>
-          <ul className="space-y-4">
-            {jobs[activeTabId].duties.map((duty, i) => (
-              <li key={i} className="flex items-start text-slate text-lg relative pl-8 before:content-['▹'] before:text-green before:absolute before:left-0 before:top-1">
-                {duty}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
+    <Section id="experience" title="Опыт">
+      <ol className="group/list">
+        {jobs.map((job, i) => (
+          <li key={i} className="mb-12">
+            <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+              <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+              
+              <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2" aria-label={job.date}>
+                {job.date}
+              </header>
+              
+              <div className="z-10 sm:col-span-6">
+                <h3 className="font-medium leading-snug text-slate-200">
+                  <div>
+                    <a className="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-green focus-visible:text-green group/link text-base" href={job.url} target="_blank" rel="noreferrer" aria-label={`${job.title} at ${job.company}`}>
+                      <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                      <span>
+                        {job.title} · <span className="inline-block">{job.company} 
+                        <ArrowUpRight className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px" />
+                        </span>
+                      </span>
+                    </a>
+                  </div>
+                </h3>
+                <p className="mt-2 text-sm leading-normal text-slate-400">
+                  {job.description}
+                </p>
+                <ul className="mt-2 flex flex-wrap" aria-label="Technologies used">
+                  {job.tech.map((t, idx) => (
+                    <li key={idx} className="mr-1.5 mt-2">
+                      <div className="flex items-center rounded-full bg-green-tint/10 px-3 py-1 text-xs font-medium leading-5 text-green">
+                        {t}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </Section>
   );
 };
 

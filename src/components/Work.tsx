@@ -1,85 +1,99 @@
 import React from 'react';
+import Section from './Section';
+import { ArrowUpRight, Trophy } from './Icons';
 
 const projects = [
   {
-    title: "Halcyon Theme",
-    description: "A minimal, dark blue theme for VS Code, Sublime Text, Atom, iTerm, and more. Available on Visual Studio Marketplace, Package Control, Atom Package Manager, and npm.",
-    tech: ["VS Code", "Sublime Text", "Atom", "iTerm2", "Hyper"],
+    title: "Human-centered AI Assistant",
+    badge: "Top 2",
+    description: "Это соревнование в рамках AI Journey Contest 2025 посвящено созданию «человекоцентричного» ИИ-ассистента для сферы электронной коммерции, способного понимать глубокие мотивы и долгосрочные цели пользователей. Участникам требовалось разработать автономного агента, который на основе анализа «цифровых следов» имитирует поведение реального человека и формирует персонализированные рекомендации, опираясь на контекст и жизненные задачи клиента.",
+    tech: ["Python", "GigaChat"],
     github: "#",
-    external: "#",
-    imageColor: "bg-cyan-900" 
+    external: "https://dsworks.ru/champ/aij25-recsys",
+    image: "/1_AIJ_contest.jpg" 
   },
   {
-    title: "Spotify Profile",
-    description: "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information of each track. Create and save new playlists of recommended tracks based on your existing tastes.",
-    tech: ["React", "Express", "Spotify API", "Heroku", "Styled Components"],
+    title: "AI for Finance Hack",
+    badge: "Top 15",
+    description: "Этот хакатон посвящен внедрению генеративного ИИ в банковские процессы для автоматизации консультаций и повышения точности ответов на сложные запросы клиентов. Участникам требовалось разработать интеллектуального ассистента на базе RAG-пайплайна (LLM + внешняя база знаний), который способен профессионально отвечать на вопросы пользователей о кредитах, инвестициях и страховании, опираясь на реальные финансовые статьи.",
+    tech: ["Python", "OpenAI API"],
     github: "#",
-    external: "#",
-    imageColor: "bg-green-900"
+    external: "https://boosters.pro/championship/ai_for_finance/overview",
+    image: "/ai_finance.png"
   },
   {
-    title: "Build v4",
-    description: "A simple, yet powerful static site generator. Designed to be minimal and fast, allowing you to focus on your content. Built with Rust and Handlebars.",
-    tech: ["Rust", "Handlebars", "Markdown", "CLI"],
+    title: "Поиск дублей | Avito ML cup 2025",
+    badge: "Top 7",
+    description: "Это соревнование от AvitoTech посвящено борьбе с повторным размещением одинаковых товаров, что мешает честной конкуренции и затрудняет поиск для покупателей. Участникам требовалось разработать мультимодальный алгоритм, который на основе анализа текстов, изображений и метаданных находит дубликаты объявлений в огромном массиве данных платформы.",
+    tech: ["Python", "CatBoost"],
     github: "#",
-    external: "#",
-    imageColor: "bg-purple-900"
+    external: "https://ods.ai/competitions/avitotechmlchallenge2025_2/",
+    image: "/avito_ml_2.png"
+  },
+  {
+    title: "MTS ML CUP",
+    badge: "Top 7",
+    description: "Это соревнование от МТС Digital посвящено задаче профилирования пользователей в сфере интернет-рекламы на основе их обезличенной сетевой активности. Участникам требовалось разработать алгоритм, который по «цифровым следам» (истории посещенных сайтов и техническим параметрам сессий) наиболее точно определит пол и возрастную категорию владельца cookie-файлов",
+    tech: ["Python", "CatBoost"],
+    github: "#",
+    external: "https://ods.ai/competitions/mtsmlcup",
+    image: "/mts.png"
   }
 ];
 
 const Work = () => {
   return (
-    <section id="work" className="max-w-[1000px] mx-auto py-24 px-6 sm:px-12">
-      <div className="flex items-center mb-10">
-        <h2 className="text-lightest-slate text-2xl sm:text-3xl font-bold font-mono mr-4">
-          <span className="text-green text-xl mr-2">03.</span>
-          Some Things I’ve Built
-        </h2>
-        <div className="h-[1px] bg-lightest-navy flex-grow max-w-[300px]"></div>
-      </div>
-
-      <div className="space-y-24">
+    <Section id="projects" title="Проекты">
+      <ol className="group/list">
         {projects.map((project, i) => (
-          <div key={i} className={`relative grid grid-cols-12 items-center gap-2`}>
-            {/* Image Side */}
-            <div className={`col-span-12 md:col-span-7 h-full relative ${i % 2 === 0 ? 'md:col-start-1' : 'md:col-start-6'} row-start-1`}>
-               <div className="w-full h-full min-h-[300px] bg-light-navy rounded overflow-hidden relative group shadow-xl">
-                  <div className={`absolute inset-0 ${project.imageColor} mix-blend-multiply opacity-70 group-hover:bg-transparent transition-all duration-300`}></div>
-                  {/* Placeholder for project image - would normally be next/image */}
-                  <div className="w-full h-full bg-slate-700 opacity-20"></div> 
-               </div>
-            </div>
-
-            {/* Content Side */}
-            <div className={`col-span-12 md:col-span-7 z-10 ${i % 2 === 0 ? 'md:col-start-6 text-right' : 'md:col-start-1 text-left'} row-start-1 pointer-events-none`}>
-              <p className="font-mono text-green text-sm mb-2">Featured Project</p>
-              <h3 className="text-lightest-slate text-2xl font-bold mb-5 pointer-events-auto">
-                <a href={project.external} className="hover:text-green">{project.title}</a>
-              </h3>
+          <li key={i} className="mb-12">
+            <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+              <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
               
-              <div className="bg-light-navy text-slate p-6 rounded shadow-xl text-lg pointer-events-auto hover:shadow-2xl transition-shadow">
-                <p>{project.description}</p>
+              <div className="z-10 sm:order-2 sm:col-span-6">
+                {project.badge && (
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <Trophy className={`w-4 h-4 ${project.badge.includes('Top 2') ? 'text-slate-300' : 'text-green'}`} />
+                    <span className={`font-mono text-xs font-bold tracking-widest uppercase ${project.badge.includes('Top 2') ? 'text-slate-300' : 'text-green'}`}>{project.badge}</span>
+                  </div>
+                )}
+                <h3>
+                  <a className="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-green focus-visible:text-green group/link text-base" href={project.external} target="_blank" rel="noreferrer" aria-label={project.title}>
+                    <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                    <span>
+                      {project.title}
+                      <ArrowUpRight className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px" />
+                    </span>
+                  </a>
+                </h3>
+                <p className="mt-2 text-sm leading-normal text-slate-400">
+                  {project.description}
+                </p>
+                <ul className="mt-2 flex flex-wrap" aria-label="Technologies used">
+                  {project.tech.map((t, idx) => (
+                    <li key={idx} className="mr-1.5 mt-2">
+                      <div className="flex items-center rounded-full bg-green-tint/10 px-3 py-1 text-xs font-medium leading-5 text-green">
+                        {t}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <ul className={`flex flex-wrap text-slate font-mono text-xs mt-6 gap-3 pointer-events-auto ${i % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
-                {project.tech.map((t, idx) => <li key={idx}>{t}</li>)}
-              </ul>
-
-              <div className={`flex items-center mt-5 gap-4 pointer-events-auto ${i % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
-                <a href={project.github} className="text-slate hover:text-green">
-                  {/* Github Icon SVG */}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                </a>
-                <a href={project.external} className="text-slate hover:text-green">
-                  {/* External Icon SVG */}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                </a>
+              <div className="z-10 sm:order-1 sm:col-span-2">
+                <div className="rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:translate-y-1 bg-slate-700/50 aspect-video flex items-center justify-center text-[10px] text-slate-500 font-mono overflow-hidden">
+                   {project.image ? (
+                     <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-opacity" />
+                   ) : (
+                     "PROJECT IMAGE"
+                   )}
+                </div>
               </div>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
-    </section>
+      </ol>
+    </Section>
   );
 };
 
